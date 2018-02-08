@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.cpointer{
+  cursor: pointer;
+}
+
+body {
+  background: #f2f2f2 !important;
+}
+
+.btn-orange{
+  background: #ff5400 !important;
+  border-color: #ff7b3a !important;
+  color: white;
+}
+
+.btn-orange:active{
+  background: #ce4400 !important;
+  border-color: #ff7b3a !important;
+}
+
+.btn-orange:focus, .btn-orange.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 71, 0.5) !important;
+}
+
+.form-orange:focus {
+  border-color: #ff7b3a !important;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 71, 0.5) !important;
+}

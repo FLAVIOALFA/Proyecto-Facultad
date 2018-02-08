@@ -1,0 +1,163 @@
+/********************************************* BUSCADOR *********************************************/
+
+/************************** PANTALLAS CELULARES - TABLETS**************************/
+@media screen and (min-width: 375px) and (max-width: 767px){
+
+  .contenedor-busqueda{
+    width: 100%;
+    position: relative;
+  }
+
+  /******** Alto de los inputs y boton vamos ********/
+  .input-pais, .input-provincia, .fecha-viaje, .btn-vamos{
+    height: 40px;
+  }
+  /******** Fin alto de los inputs y boton vamos ********/
+
+  .input-pais{
+    margin-top: 5px;
+  }
+  /***** Le damos un margen top al buscador de provincia *****/
+  .input-provincia{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  /***** Fin le damos un margen top al buscador de provincia *****/
+  .btn-vamos{
+    top: 5px;
+  }
+}
+/************************ FIN PANTALLAS CELULARES - TABLETS ************************/
+
+/************************** PANTALLAS NOTEBOOKS **************************/
+@media screen and (min-width: 768px){
+  /*#fondoPagina{
+    height: 600px;
+  }*/
+  .contenedor-busqueda{
+    width: 80%;
+    position: relative;
+    left: 15%;
+    float: left;
+  }
+
+  /********* Alto de los inputs y boton vamos *********/
+  .input-pais, .input-provincia, .fecha-viaje, .btn-vamos{
+    height: 50px;
+  }
+  /********* Fin alto de los inputs y boton vamos *********/
+
+  /***** Le damos un margen top al buscador de provincia *****/
+  .input-provincia{
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+  /***** Fin le damos un margen top al buscador de provincia *****/
+  .btn-vamos{
+    top: 7px;
+  }
+}
+/************************ FIN PANTALLAS NOTEBOOKTS ************************/
+
+/************************** PANTALLAS GRANDES **************************/
+@media screen and (min-width: 991px){
+  .contenedor-busqueda{
+    width: 60%;
+    position: relative;
+    left: 20%;
+    float: left;
+    box-sizing: inherit;
+  }
+  /********* TAMAÑOS BOTONES *********/
+  .input-pais, .input-provincia, .fecha-viaje, .btn-vamos{
+    height: 50px;
+  }
+  /********* FIN TAMAÑOS BOTONES *********/
+
+  /***** MARGEN TOP BUSCADOR PROVINCIA *****/
+  .input-provincia{
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+  /***** FIN MARGEN TOP BUSCADOR PROVINCIA *****/
+  .btn-vamos{
+    top: 10px;
+  }
+
+  #pais{
+    position: relative;
+    display: inline-block;
+  }
+
+}
+/************************ FIN PANTALLAS GRANDES ************************/
+/******************************************* FIN BUSCADOR *******************************************/
+
+.redondear-puntas{
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/********************* FOCUS CAMPO PAIS Y PROVINCIA *********************/
+.input-pais:focus, .input-provincia:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 97, 0, 0.25);
+  border: 1px solid orange !important;
+}
+/******************* FIN FOCUS CAMPO PAIS Y PROVINCIA *******************/
+
+/********************* BOTON FECHA DE VIAJE *********************/
+.fecha-viaje{
+  color: #ffffff;
+  font-weight: 400;
+  background: #474a4c;
+  box-shadow: 1px 2px 3px black;
+  border: 1px solid #3a3a3a;
+}
+.fecha-viaje:hover{
+  background: #525659;
+}
+.fecha-viaje:active{
+  box-shadow:none;
+}
+.fa-calendar{
+  color: #ff5400;
+}
+/********************* FIN BOTON FECHA DE VIAJE *********************/
+
+/********************* BOTON VAMOS *********************/
+.btn-vamos{
+  background: #ce4400;
+  border-color: #892d00;
+  color: #ffffff;
+  font-weight: 400;
+}
+.btn-vamos:active{
+  background: #ce4400 !important;
+  border-color: #ff7b3a !important;
+}
+.btn-vamos:focus{
+  box-shadow: none;
+}
+.btn-vamos:hover{
+  background: #e24d04;
+}
+.fa-calendar{
+  margin-left: 5px;
+}
+
+.input-pais{
+  display: inline-block;
+}
+
+#fondoPagina{
+  background-image: url("../../../assets/imagenes/playaNaranja.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#contenedor-carousel{
+  background: rgba(255,255,255,0.5);
+  padding: 10px;
+  height: 440px;
+}
+/********************* FIN BOTON VAMOS *********************/

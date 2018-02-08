@@ -1,0 +1,65 @@
+/************************* CAROUSEL DE CARDS ****************************/
+.carousel-propio{
+
+}
+@media screen and (min-width: 991px){
+  .carousel-propio{
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    position:relative;
+  }
+
+  .card{
+    width: 320px;
+  }
+
+}
+
+@media screen and (min-width: 325px){
+  .carousel-propio{
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    position:relative;
+  }
+  .card{
+    width: 320px;
+    margin-right: 10px;
+  }
+
+}
+/******************** FLECHAS DEL SLIDE ********************/
+.prev, .sig{
+  position: absolute;
+  top: 45%;
+  z-index: 1002;
+  color: #e24d04;
+  opacity: 0.3;
+  transition-duration: 0.5s;
+}
+
+.prev:hover, .sig:hover{
+  opacity: 1;
+  transition-duration: 0.5s;
+}
+
+.fa-chevron-left, .fa-chevron-right{
+  top:45%;
+  position: inherit;
+}
+
+.fa-chevron-right{
+  z-index: 2000;
+  position: inherit;
+}
+/****************** FIN FLECHAS DEL SLIDE ******************/
+
+.carousel-propio ul{
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  margin-left:0;
+}
+
+/*********************** FIN CAROUSEL DE CARDS **************************/

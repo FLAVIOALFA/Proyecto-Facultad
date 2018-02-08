@@ -1,0 +1,21 @@
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+/************************* Navbar *************************/
+.reg-hover:hover{
+  color: #212529;
+}
+/********************** Fin navbar ************************/
+
+.footer-page{
+  text-align: center;
+  background: #ffffff;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  color: #212529;
+  font-size: 12px;
+}
+

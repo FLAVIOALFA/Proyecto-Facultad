@@ -1,0 +1,94 @@
+<!-- Carousel Slider -->
+
+  <!--************************* ACA ARRANCA EL SLIDE *************************-->
+  <div class="carousel-propio" (window:resize)="onResize($event)" id="carousel">
+    <div class="prev cpointer" (click)="prevCard()">
+      <i class="fa fa-chevron-left fa-3x" aria-hidden="true"></i>
+    </div>
+    <div class="sig cpointer" id="btnSiguiente" (click)="sigCard()">
+      <i class="fa fa-chevron-right fa-3x" aria-hidden="true"></i>
+    </div>
+
+      <ul [ngStyle]="slide()" id="idUl">
+
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Primera Card</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa3.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa3.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="card">
+            <img class="card-img-top" src="../../../assets/imagenes/playa1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Ultimo card</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+  </div>
+
+<!-- Carousel Slider -->

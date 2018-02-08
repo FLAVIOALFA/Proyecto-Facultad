@@ -1,20 +1,78 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> ACA HAY QUE METERLE EL LOGO -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['home']">{{ title }} <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="token != ''">
+        <a class="nav-link" [routerLink]="['mi-cuenta']">Mi Cuenta</a>
+      </li>
+    </ul>
+      <button class="btn btn-outline-light my-2 my-sm-0 btn-navbar cpointer reg-hover"
+                *ngIf="token != ''" type="submit">Registrá tu alojamiento</button>&nbsp;
+
+      <button class="btn btn-outline-success my-2 my-sm-0 cpointer"
+              *ngIf="token == ''" data-toggle="modal" data-target="#exampleModal"
+      >Iniciar Sesión
+      </button>
+      <button *ngIf="token != ''" class="btn btn-outline-success cpointer" (click)="salir()">Salir</button>
+  </div>
+</nav>
+<!-- PRINCIPAL -->
+<router-outlet></router-outlet>
+
+<!--********************* ABRIR MODAL DE LOGIN ********************* -->
+<!-- Modal -->
+
+
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel">Inicia Sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form #forma="ngForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control form-orange" id="email"
+                   placeholder="Email..." required [(ngModel)]="login.email" name="email" #correo="ngModel"
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                   [ngClass]="{ 'is-invalid' : (correo.errors?.required || correo.errors?.valid)&& correo.touched}">
+            <div *ngIf="correo.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+            <div *ngIf="correo.errors?.valid" class="invalid-feedback">El correo es incorrecto</div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control form-orange" id="exampleInputPassword1"
+                   placeholder="Contraseña..." required [(ngModel)]="login.password" name="password" #password="ngModel"
+                   [ngClass]="{ 'is-invalid' : ( password.errors?.required )&& password.touched}">
+            <div *ngIf="password.error?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-orange cpointer" data-dismiss="modal" (click)="doLogin()">Iniciar Sesión</button>
+        <br>
+        <button type="button" class="btn btn-primary cpointer" data-dismiss="modal" (click)="registrarse()">Registrate</button>
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!--******************* FIN ABRIR MODAL DE LOGIN ******************* -->
+
+<div class="footer-page">
+    <i>Pagina creada por Flavio Alfaro &copy;</i>
+</div>
 

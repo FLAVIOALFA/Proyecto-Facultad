@@ -1,0 +1,301 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel">
+
+        <img src="../../../assets/imagenes/no-image.jpg" id="avatar" alt="..."
+             class="border border-dark rounded-circle">
+        <hr>
+        <ul>
+          <li (click)="miCuenta()" >Mi Cuenta</li>
+          <li (click)="misReservas()" >Mis Reservas</li>
+          <li (click)="datosPersonales()" >Datos Personales</li>
+          <li (click)="cambiarPass()" >Cambiar Contraseña</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="contenido">
+
+        <div *ngIf="cuenta" id="misDatos">
+
+          <h2>Mis Datos</h2>
+          <hr>
+          <br>
+          <form #formulario="ngForm">
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Nombre</label>
+              <div class="col-8">
+                <input type="text" class="form-control form-orange" [(ngModel)]="usuario.nombre" name="nombre"
+                       [ngClass]="{ 'is-invalid' : (name.errors?.required || name.errors?.minlength)&& name.touched}"
+                       required #name="ngModel" minlength="3">
+                <div *ngIf="name.errors?.required" class="invalid-feedback">El campo no puede estar vacío.</div>
+                <div *ngIf="name.errors?.minlength" class="invalid-feedback">Debe contener al menos {{name.errors.minlength.requiredLength}}
+                  caracteres.</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Apellido</label>
+              <div class="col-8">
+                <input type="text" id="apellido" class="form-control form-orange" [(ngModel)]="usuario.apellido"
+                       name="apellido" required #lastName="ngModel" minlength="3"
+                       [ngClass]="{ 'is-invalid' : (lastName.errors?.required || lastName.errors?.minlength)&& lastName.touched}">
+                <div *ngIf="lastName.errors?.required" class="invalid-feedback">El campo no puede estar vacío.</div>
+                <div *ngIf="lastName.errors?.minlength" class="invalid-feedback">Debe contener al menos {{lastName.errors.minlength.requiredLength}}
+                  caracteres.</div>
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Correo</label>
+              <div class="col-8">
+                <input type="email" id="email" class="form-control form-orange" [(ngModel)]="usuario.email" name="correo" required
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #correo="ngModel"
+                       [ngClass]="{ 'is-invalid' : (correo.errors?.required || correo.errors?.valid)&& correo.touched}">
+
+                <div *ngIf="correo.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+                <div *ngIf="correo.errors?.valid" class="invalid-feedback">El correo es incorrecto</div>
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Teléfono</label>
+              <div class="col-8">
+                <input type="email" id="tel" class="form-control form-orange" [(ngModel)]="usuario.telefono"
+                       name="telefono" required #telef="ngModel" pattern="\d+"
+                       [ngClass]="{ 'is-invalid' : (telef.errors?.required || telef.errors?.valid)&& telef.touched}">
+                <div *ngIf="telef.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+                <div *ngIf="telef.errors?.valid" class="invalid-feedback">Solo ingrese valores numéricos</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Fecha Nacimiento</label>
+              <div class="col-8">
+
+                <div class="form-inline">
+                  <div class="col-3"></div>
+                  <select class="form-control form-orange col-2 cpointer" id="diaNac" [(ngModel)]="fecha_nacimiento.dia"
+                          name="dia">
+                    <option value="">Día</option>
+                    <option value="{{dia}}" *ngFor="let dia of dias">{{dia}}</option>
+                  </select>&nbsp;
+
+                  <select class="form-control form-orange col-2 cpointer" id="mesNac" [(ngModel)]="fecha_nacimiento.mes"
+                          name="mes" >
+                    <option value="">Mes</option>
+                    <option value="{{mes}}" *ngFor="let mes of meses">{{mes}}</option>
+                  </select>&nbsp;
+
+                  <select class="form-control form-orange col-2 cpointer" id="anioNac" [(ngModel)]="fecha_nacimiento.anio"
+                          name="anio" >
+                    <option value="">Año</option>
+                    <option value="{{anio}}" *ngFor="let anio of anios">{{anio}}</option>
+                  </select>&nbsp;
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Sexo</label>
+              <div class="col-2"></div>
+              <div class="col-md-8">
+
+                <label class="custom-control custom-radio cpointer" *ngFor="let s of sexos">
+                  <input [(ngModel)]="usuario.sexo" [value]="s" required
+                         name="radio" type="radio" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">{{s}}</span>
+                </label>
+
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <div class="col-2"></div>
+              <div class="col-8">
+                <div *ngIf="messageSuccess != ''" #divSuccess class="alert alert-success">{{messageSuccess}}</div>
+                <div *ngIf="messageError != ''" #divError class="alert alert-danger">{{messageError}}</div>
+              </div>
+            </div>
+
+            <button [disabled]="!formulario.valid" class="btn btn-orange cpointer" name="button"
+                    (click)="guardarMisDatos()" [disabled]="loading">
+
+              <i [ngClass]="{'fa-save':!loading, 'fa-refresh fa-spin' : loading}"
+                 class="fa">
+              </i>
+              <span *ngIf="!loading">Guardar cambios</span>
+              <span *ngIf="loading">Espere por favor</span>
+            </button>
+
+
+          </form>
+
+
+
+        </div>
+        <div *ngIf="reservas" id="misReservas">
+
+          <h2>Mis Reservas</h2>
+          <hr>
+
+
+
+        </div>
+
+        <div *ngIf="personales">
+          <h2>Datos Personales</h2>
+          <hr>
+
+          <form #formularioDomicilio="ngForm">
+
+            <div class="form-group row">
+              <label for="calle" class="col-2 col-form-label">Calle</label>
+              <div class="col-8">
+                <input type="text" id="calle" class="form-control form-orange" [(ngModel)]="domicilio.calle"
+                       name="calle" required
+                       #calle="ngModel"
+                       [ngClass]="{ 'is-invalid' : (calle.errors?.required)&& calle.touched}">
+                <div *ngIf="calle.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="barrio" class="col-2 col-form-label">Barrio</label>
+              <div class="col-8">
+                <input type="text" id="barrio" class="form-control form-orange" [(ngModel)]="domicilio.barrio"
+                       name="barrio">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="numero" class="col-2 col-form-label">Número</label>
+              <div class="col-8">
+                <input type="text" id="numero" class="form-control form-orange" [(ngModel)]="domicilio.numero"
+                       name="numero" required
+                       #numero="ngModel"
+                       [ngClass]="{ 'is-invalid' : (numero.errors?.required || numero.errors?.valid)&& calle.touched}">
+                <div *ngIf="numero.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+                <div *ngIf="numero.errors?.valid" class="invalid-feedback">Solo ingrese valores numéricos</div>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Residencia</label>
+              <div class="col-1"></div>
+              <div class="col-8">
+                <div class="form-inline">
+                  <select class="form-control form-orange col-4" id="pais" [(ngModel)]="pais.nombre"
+                          name="pais" #paisCont="ngModel" (change)="getProvincias(paisCont)">
+                    <option value="">Elija su país</option>
+                    <option [value]="pais._id" *ngFor="let pais of paises">{{pais.nombre}}</option>
+                  </select>&nbsp;
+
+                  <select class="form-control form-orange col-4" id="provincia" [(ngModel)]="provincia.nombre"
+                          name="provincia" #idProv="ngModel" (change)="changeProv(idProv)">
+                    <option value="">Elija su provincia..</option>
+                    <option [value]="provincia._id" *ngFor="let provincia of provincias">{{provincia.nombre}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-2"></div>
+              <div class="col-8">
+                <div *ngIf="messageSuccess != ''" #divSuccess class="alert alert-success">{{messageSuccess}}</div>
+                <div *ngIf="messageError != ''" #divError class="alert alert-danger">{{messageError}}</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-2">
+                <button [disabled]="!formularioDomicilio.valid" class="btn btn-orange cpointer" name="button" (click)="guardarDomicilio()"
+                        [disabled]="loading">
+
+                  <i [ngClass]="{'fa-save':!loading, 'fa-refresh fa-spin' : loading}"
+                     class="fa">
+                  </i>
+                  <span *ngIf="!loading">Guardar cambios</span>
+                  <span *ngIf="loading">Espere por favor</span>
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div *ngIf="cambiarContrasena">
+          <h2>Cambiar Contraseña</h2>
+          <hr>
+          <form #formularioContrasena="ngForm">
+
+            <div class="form-group row">
+              <label for="antCont" class="col-2 col-form-label">Contraseña Anterior</label>
+              <div class="col-8">
+                <input type="password" id="antCont" class="form-control form-orange" [(ngModel)]="newPass.oldPass"
+                       name="oldPassword" required #viejaPass="ngModel" minlength="8"
+                       [ngClass]="{ 'is-invalid' : (viejaPass.errors?.required || viejaPass.errors?.minlength)&& viejaPass.touched}">
+                <div *ngIf="viejaPass.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+                <div *ngIf="viejaPass.errors?.minlength" class="invalid-feedback">La contraseña debe contener al menos 8 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="newCont" class="col-2 col-form-label">Nueva Contraseña</label>
+              <div class="col-8">
+                <input type="password" id="newCont" class="form-control form-orange" [(ngModel)]="newPass.newPass"
+                       name="newPassword" required #newPass="ngModel" minlength="8"
+                       [ngClass]="{ 'is-invalid' : (newPass.errors?.required || newPass.errors?.minlength)&& newPass.touched}">
+                <div *ngIf="newPass.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+                <div *ngIf="newPass.errors?.minlength" class="invalid-feedback">La contraseña debe contener al menos 8 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="repCont" class="col-2 col-form-label">Repetir Contraseña</label>
+              <div class="col-8">
+                <input type="password" id="repCont" class="form-control form-orange" [(ngModel)]="newPass.repPass"
+                       name="respPassoword" required #repPass="ngModel" minlength="8"
+                       [ngClass]="{ 'is-invalid' : (repPass.errors?.required || repPass.errors?.minlength)}">
+                <div *ngIf="repPass.errors?.required" class="invalid-feedback">El campo no puede estar vacío</div>
+                <div *ngIf="repPass.errors?.minlength" class="invalid-feedback">La contraseña debe contener al menos 8 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-2"></div>
+              <div class="col-8">
+                <div *ngIf="messageSuccess != ''" #divSuccess class="alert alert-success">{{messageSuccess}}</div>
+                <div *ngIf="messageError != ''" #divError class="alert alert-danger">{{messageError}}</div>
+              </div>
+            </div>
+              <button [disabled]="!formularioContrasena.valid" class="btn btn-orange cpointer" name="button"
+                      (click)="changePass()" [disabled]="loading">
+
+                <i [ngClass]="{'fa-save':!loading, 'fa-refresh fa-spin' : loading}"
+                   class="fa">
+                </i>
+                <span *ngIf="!loading">Guardar cambios</span>
+                <span *ngIf="loading">Espere por favor</span>
+              </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
